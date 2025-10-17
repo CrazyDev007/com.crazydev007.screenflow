@@ -1,0 +1,22 @@
+{
+  "name": "com.crazydev007.screenflow",
+  "version": "1.0.0",
+  "displayName": "ScreenFlow",
+  "description": "A modular UI screen navigation system for Unity projects.",
+  "unity": "2021.3",
+  "author": {
+    "name": "CrazyDev007",
+    "email": "gajendramr2@gmail.com",
+    "url": "https://your-portfolio-or-github.com"
+  },
+  "keywords": [
+    "UI",
+    "navigation",
+    "screens",
+    "unity",
+    "screenflow",
+    "canvas",
+    "stack",
+    "routing"
+  ]
+}
