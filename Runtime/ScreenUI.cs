@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace ScreenFlow
 {
-    public abstract class IScreen : MonoBehaviour
+    public abstract class ScreenUI : MonoBehaviour
     {
         private VisualElement _root;
         [SerializeField] protected VisualTreeAsset screenAsset;

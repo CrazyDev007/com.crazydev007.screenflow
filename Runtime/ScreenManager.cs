@@ -10,7 +10,7 @@ namespace ScreenFlow
         public static ScreenManager Instance { get; private set; }
         [SerializeField] private List<UIScreenMapping> screenMappings;
 
-        private readonly Dictionary<UIScreenType, IScreen> _screens = new Dictionary<UIScreenType, IScreen>();
+        private readonly Dictionary<UIScreenType, ScreenUI> _screens = new Dictionary<UIScreenType, ScreenUI>();
 
         private VisualElement _root;
 
@@ -40,7 +40,7 @@ namespace ScreenFlow
 
         public void ShowScreen(UIScreenType screenType)
         {
-            if (_screens.TryGetValue(screenType, out IScreen screen))
+            if (_screens.TryGetValue(screenType, out ScreenUI screen))
             {
                 screen.Show();
             }
@@ -55,7 +55,7 @@ namespace ScreenFlow
     public struct UIScreenMapping
     {
         public UIScreenType type;
-        public IScreen screen;
+        public ScreenUI screen;
         public bool isDefault;
     }
 
