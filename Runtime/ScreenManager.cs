@@ -10,7 +10,7 @@ namespace ScreenFlow
         public static ScreenManager Instance { get; private set; }
         [SerializeField] private List<UIScreenMapping> screenMappings;
 
-        private readonly Dictionary<UIScreenType, ScreenUI> _screens = new Dictionary<UIScreenType, ScreenUI>();
+        private readonly Dictionary<string, ScreenUI> _screens = new Dictionary<string, ScreenUI>();
 
         private VisualElement _root;
 
@@ -38,7 +38,7 @@ namespace ScreenFlow
             }
         }
 
-        public void ShowScreen(UIScreenType screenType)
+        public void ShowScreen(string screenType)
         {
             if (_screens.TryGetValue(screenType, out ScreenUI screen))
             {
@@ -46,25 +46,21 @@ namespace ScreenFlow
             }
             else
             {
-                Debug.LogError($"Screen of type {screenType} not found.");
+                Debug.LogError($"Screen of type '{screenType}' not found. Available screens: {string.Join(", ", _screens.Keys)}");
             }
+        }
+
+        public IEnumerable<string> GetAvailableScreenTypes()
+        {
+            return _screens.Keys;
         }
     }
 
     [Serializable]
     public struct UIScreenMapping
     {
-        public UIScreenType type;
+        public string type;
         public ScreenUI screen;
         public bool isDefault;
-    }
-
-
-    public enum UIScreenType
-    {
-        Lobby,
-        Setting,
-        Gameplay,
-        GameEnd, Login, Register, CreatePassword, ForgotPassword, EnterOtp, SentOtp, ChangePassword, Home,
     }
 }
