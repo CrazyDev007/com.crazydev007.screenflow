@@ -7,6 +7,7 @@ namespace ScreenFlow
     {
         private VisualElement _root;
         [SerializeField] protected VisualTreeAsset screenAsset;
+
         public virtual void Show()
         {
             _root.styleSheets.Clear();
@@ -17,24 +18,27 @@ namespace ScreenFlow
             _root.Add(screen);
             SetupScreen(screen);
         }
-        
+
         public void SetupRoot(VisualElement root)
         {
             this._root = root;
         }
-        
+
         private void ApplySafeArea(VisualElement screen)
         {
             // Calculate top space (notch area)
             var topSpace = Screen.height - Screen.safeArea.yMax;
             var bottomSpace = Screen.safeArea.yMin;
 
+            var safeArea = screen.Q<VisualElement>("SafeArea");
             // Apply as padding to avoid the notch
-            screen.style.paddingTop = topSpace;
-            screen.style.paddingBottom = bottomSpace;
+            if (safeArea != null)
+            {
+                safeArea.style.paddingTop = topSpace;
+                safeArea.style.paddingBottom = bottomSpace;
+            }
         }
 
         protected abstract void SetupScreen(VisualElement screen);
     }
-
 }
